@@ -1,5 +1,7 @@
 #!/bin/sh
 
+./health-check.sh&
+
 echo "{
   \"api_url\": \"https://api.pro.coinbase.com\",
   \"api_key\": \"$API_KEY\",
