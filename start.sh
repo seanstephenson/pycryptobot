@@ -13,3 +13,4 @@ python3 pycryptobot.py \
   --sellupperpcnt "$SELLUPPERPCNT" \
   --selllowerpcnt "$SELLLOWERPCNT" \
   --live 1
+
