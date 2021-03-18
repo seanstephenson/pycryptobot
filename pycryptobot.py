@@ -8,7 +8,7 @@ import logging, os, random, sched, sys, time
 from models.PyCryptoBot import PyCryptoBot
 from models.Trading import TechnicalAnalysis
 from models.TradingAccount import TradingAccount
-from views.TradingGraphs import TradingGraphs
+# from views.TradingGraphs import TradingGraphs
 
 # production: disable traceback
 #sys.tracebacklimit = 0
@@ -468,8 +468,12 @@ def executeJob(sc, app=PyCryptoBot(), trading_data=pd.DataFrame()):
                         print('--------------------------------------------------------------------------------')
                     
                     # execute a live market buy
-                    resp = app.marketBuy(app.getMarket(), float(account.getBalance(app.getQuoteCurrency())))
-                    logging.info(resp)
+                    try:
+                        resp = app.marketBuy(app.getMarket(), float(account.getBalance(app.getQuoteCurrency())))
+                        logging.info(resp)
+                    except:
+                        # oh shit
+                        logging.error('error while buying')
 
                 # if not live
                 else:
