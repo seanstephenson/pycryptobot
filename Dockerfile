@@ -1,5 +1,7 @@
 FROM python:3.9.1
 
+ENV PYTHONUNBUFFERED True
+
 WORKDIR pycryptobot
 ADD . .
 
