@@ -9,7 +9,7 @@ echo "{
   \"api_pass\": \"$API_PASS\"
 }" > config.json
 
-python3 pycryptobot.py \
+python3 -u pycryptobot.py \
   --market "$MARKET" \
   --granularity "$GRANULARITY" \
   --sellupperpcnt "$SELLUPPERPCNT" \
