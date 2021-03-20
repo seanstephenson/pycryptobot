@@ -14,4 +14,4 @@ python3 -u pycryptobot.py \
   --granularity "$GRANULARITY" \
   --sellupperpcnt "$SELLUPPERPCNT" \
   --selllowerpcnt "$SELLLOWERPCNT" \
-  --live 1
+  --verbose 0

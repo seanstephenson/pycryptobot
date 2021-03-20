@@ -497,7 +497,9 @@ class TechnicalAnalysis():
             self.addEMA(13)
 
         self.df['elder_ray_bull'] = self.df['high'] - self.df['ema13']
-        self.df['elder_ray_bear'] = self.df['low'] - self.df['ema13']        
+        self.df['elder_ray_bear'] = self.df['low'] - self.df['ema13']
+        self.df['elder_ray_bull_delta'] = self.df['elder_ray_bull'] - self.df['elder_ray_bull'].shift(1)
+        self.df['elder_ray_bear_delta'] = self.df['elder_ray_bear'] - self.df['elder_ray_bear'].shift(1)
 
     def getSupportResistanceLevels(self):
         """Calculate the Support and Resistance Levels"""

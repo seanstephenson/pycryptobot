@@ -130,6 +130,8 @@ def executeJob(sc, app=PyCryptoBot(), trading_data=pd.DataFrame()):
         obv_pc = float(df_last['obv_pc'].values[0])
         elder_ray_bull = float(df_last['elder_ray_bull'].values[0])
         elder_ray_bear = float(df_last['elder_ray_bear'].values[0])
+        elder_ray_bull_delta = float(df_last['elder_ray_bull_delta'].values[0])
+        elder_ray_bear_delta = float(df_last['elder_ray_bear_delta'].values[0])
 
         # candlestick detection
         hammer = bool(df_last['hammer'].values[0])
@@ -147,10 +149,10 @@ def executeJob(sc, app=PyCryptoBot(), trading_data=pd.DataFrame()):
         two_black_gapping = bool(df_last['two_black_gapping'].values[0])
 
         # criteria for a buy signal
-        if ema12gtema26co == True and macdgtsignal == True and goldencross == True and obv_pc > -5 and elder_ray_bull > 0 and last_action != 'BUY':
+        if ema12gtema26 and macdgtsignalco and goldencross and obv_pc > -5 and elder_ray_bull_delta > 0 and elder_ray_bear_delta > 0 and last_action != 'BUY':
             action = 'BUY'
         # criteria for a sell signal
-        elif ((ema12ltema26co == True and macdltsignal == True) or (elder_ray_bull < 0 and elder_ray_bear < 0)) and last_action not in ['','SELL']:
+        elif ((ema12ltema26 and macdltsignal) or (elder_ray_bull_delta < 0 and elder_ray_bear_delta < 0)) and last_action not in ['','SELL']:
             action = 'SELL'
         # anything other than a buy or sell, just wait
         else:

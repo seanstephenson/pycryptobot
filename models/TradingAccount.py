@@ -129,6 +129,7 @@ class TradingAccount():
             if self.mode == 'live':
                 # if config is provided and live connect to Coinbase Pro account portfolio
                 model = CBAuthAPI(self.app.getAPIKey(), self.app.getAPISecret(), self.app.getAPIPassphrase(), self.app.getAPIURL())
+
                 # retrieve orders from live Coinbase Pro account portfolio
                 self.orders = model.getOrders(market, action, status)
                 return self.orders
