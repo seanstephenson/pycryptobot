@@ -2,9 +2,9 @@
 
 ./health-check.sh&
 
-API_KEY=${gcloud secrets versions access latest --secret="COINBASE_API_KEY"}
-API_SECRET=${gcloud secrets versions access latest --secret="COINBASE_API_SECRET"}
-API_PASS=${gcloud secrets versions access latest --secret="COINBASE_API_PASS"}
+API_KEY=$(gcloud secrets versions access latest --secret="COINBASE_API_KEY")
+API_SECRET=$(gcloud secrets versions access latest --secret="COINBASE_API_SECRET")
+API_PASS=$(gcloud secrets versions access latest --secret="COINBASE_API_PASS")
 
 echo "{
   \"api_url\": \"https://api.pro.coinbase.com\",
