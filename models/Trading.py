@@ -399,7 +399,11 @@ class TechnicalAnalysis():
 
         self.df['obv'] = self.onBalanceVolume()
         self.df['obv_pc'] = self.df['obv'].pct_change() * 100
-        self.df['obv_pc'] = np.round(self.df['obv_pc'].fillna(0), 2)  
+        self.df['obv_pc'] = np.round(self.df['obv_pc'].fillna(0), 2)
+
+        self.df['obv_delta1'] = self.df['obv'].shift(1)
+        self.df['obv_pc_delta1'] = self.df['obv_delta1'].pct_change() * 100
+        self.df['obv_pc_delta1'] = np.round(self.df['obv_pc_delta1'].fillna(0), 2)
 
     def relativeStrengthIndex(self, period):
         """Calculate the Relative Strength Index (RSI)"""
@@ -498,8 +502,10 @@ class TechnicalAnalysis():
 
         self.df['elder_ray_bull'] = self.df['high'] - self.df['ema13']
         self.df['elder_ray_bear'] = self.df['low'] - self.df['ema13']
-        self.df['elder_ray_bull_delta'] = self.df['elder_ray_bull'] - self.df['elder_ray_bull'].shift(1)
-        self.df['elder_ray_bear_delta'] = self.df['elder_ray_bear'] - self.df['elder_ray_bear'].shift(1)
+        self.df['elder_ray_bull_delta1'] = self.df['elder_ray_bull'].shift(1)
+        self.df['elder_ray_bear_delta1'] = self.df['elder_ray_bear'].shift(1)
+        self.df['elder_ray_bull_delta2'] = self.df['elder_ray_bull'].shift(2)
+        self.df['elder_ray_bear_delta2'] = self.df['elder_ray_bear'].shift(2)
 
     def getSupportResistanceLevels(self):
         """Calculate the Support and Resistance Levels"""
@@ -604,6 +610,10 @@ class TechnicalAnalysis():
         # true if the current frame is where MACD crosses over above
         self.df['macdgtsignalco'] = self.df.macdgtsignal.ne(self.df.macdgtsignal.shift())
         self.df.loc[self.df['macdgtsignal'] == False, 'macdgtsignalco'] = False
+
+        self.df['macdgtsignal_delta1'] = self.df.macd.shift(1) > self.df.signal.shift(1)
+        self.df['macdgtsignalco_delta1'] = self.df.macdgtsignal_delta1.ne(self.df.macdgtsignal_delta1.shift())
+        self.df.loc[self.df['macdgtsignalco_delta1'] == False, 'macdgtsignalco_delta1'] = False
 
         # true if the MACD is below the Signal
         self.df['macdltsignal'] = self.df.macd < self.df.signal
