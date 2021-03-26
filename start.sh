@@ -16,3 +16,4 @@ python3 -u moonbot.py \
   --selllowerpcnt "$SELLLOWERPCNT" \
   --verbose 0 \
   --live 1
+
