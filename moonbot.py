@@ -8,7 +8,7 @@ import logging, os, random, sched, sys, time
 from models.PyCryptoBot import PyCryptoBot
 from models.Trading import TechnicalAnalysis
 from models.TradingAccount import TradingAccount
-from views.TradingGraphs import TradingGraphs
+# from views.TradingGraphs import TradingGraphs
 
 # production: disable traceback
 #sys.tracebacklimit = 0
