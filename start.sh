@@ -14,5 +14,5 @@ python3 -u moonbot.py \
   --granularity "$GRANULARITY" \
   --sellupperpcnt "$SELLUPPERPCNT" \
   --selllowerpcnt "$SELLLOWERPCNT" \
-  --verbose 0
+  --verbose 0 \
   --live 1
