@@ -290,7 +290,7 @@ class TechnicalAnalysis():
         close_pc = self.df['close'] / self.df['close'].shift(1) - 1
         close_pc = close_pc.fillna(0)
         return close_pc
-    
+
     def addChangePct(self):
         """Adds the close percentage to the DataFrame"""
 
@@ -404,6 +404,9 @@ class TechnicalAnalysis():
         self.df['obv_delta1'] = self.df['obv'].shift(1)
         self.df['obv_pc_delta1'] = self.df['obv_delta1'].pct_change() * 100
         self.df['obv_pc_delta1'] = np.round(self.df['obv_pc_delta1'].fillna(0), 2)
+
+        self.df['close_delta1'] = self.df['close'] / self.df['close'].shift(1)
+        self.df['close_delta2'] = self.df['close'].shift(1) / self.df['close'].shift(2)
 
     def relativeStrengthIndex(self, period):
         """Calculate the Relative Strength Index (RSI)"""
